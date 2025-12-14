@@ -69,6 +69,6 @@ class Tour extends Component
 
     public function render()
     {
-        return view('ld-tour::livewire.tour');
+        return view('sb-tour::livewire.tour');
     }
 }

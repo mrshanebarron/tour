@@ -47,7 +47,7 @@
 import { ref, computed, watch, nextTick } from 'vue';
 
 export default {
-  name: 'LdTour',
+  name: 'SbTour',
   props: {
     steps: { type: Array, default: () => [] },
     modelValue: { type: Boolean, default: false },

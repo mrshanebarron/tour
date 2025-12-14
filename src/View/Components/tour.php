@@ -13,6 +13,6 @@ class tour extends Component
 
     public function render()
     {
-        return view('ld-tour::components.tour');
+        return view('sb-tour::components.tour');
     }
 }
