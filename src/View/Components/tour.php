@@ -1,10 +1,10 @@
 <?php
 
-namespace MrShaneBarron\tour\View\Components;
+namespace MrShaneBarron\Tour\View\Components;
 
 use Illuminate\View\Component;
 
-class tour extends Component
+class Tour extends Component
 {
     public function __construct()
     {

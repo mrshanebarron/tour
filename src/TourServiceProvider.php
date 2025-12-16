@@ -1,13 +1,13 @@
 <?php
 
-namespace MrShaneBarron\tour;
+namespace MrShaneBarron\Tour;
 
 use Illuminate\Support\ServiceProvider;
-use MrShaneBarron\tour\Livewire\tour;
-use MrShaneBarron\tour\View\Components\tour as Bladetour;
+use MrShaneBarron\Tour\Livewire\Tour;
+use MrShaneBarron\Tour\View\Components\Tour as BladeTour;
 use Livewire\Livewire;
 
-class tourServiceProvider extends ServiceProvider
+class TourServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
@@ -18,10 +18,10 @@ class tourServiceProvider extends ServiceProvider
     {
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'sb-tour');
 
-        Livewire::component('sb-tour', tour::class);
+        Livewire::component('sb-tour', Tour::class);
 
         $this->loadViewComponentsAs('ld', [
-            Bladetour::class,
+            BladeTour::class,
         ]);
 
         if ($this->app->runningInConsole()) {
