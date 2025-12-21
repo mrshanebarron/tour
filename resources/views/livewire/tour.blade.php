@@ -1,7 +1,7 @@
 <div>
-    @if($active && $this->getCurrentStep())
+    @if($this->active && $this->getCurrentStep())
         @php $step = $this->getCurrentStep(); @endphp
-        
+
         <div
             x-data="{
                 init() {
@@ -16,10 +16,10 @@
                     }
                 }
             }"
-            class="fixed inset-0 z-[1000]"
+            style="position: fixed; inset: 0; z-index: 1000;"
         >
             <!-- Overlay -->
-            <div class="absolute inset-0" style="background: {{ $overlayColor }}"></div>
+            <div style="position: absolute; inset: 0; background: {{ $this->overlayColor }};"></div>
 
             <!-- Tooltip -->
             <div
@@ -31,32 +31,32 @@
                         $el.style.left = rect.left + 'px';
                     }
                 })"
-                class="absolute z-[1002] max-w-sm bg-white rounded-xl shadow-2xl"
+                style="position: absolute; z-index: 1002; max-width: 24rem; background: white; border-radius: 12px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);"
             >
-                <div class="p-4">
+                <div style="padding: 16px;">
                     @if(isset($step['title']))
-                        <h3 class="text-lg font-semibold text-gray-900 mb-2">{{ $step['title'] }}</h3>
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">{{ $step['title'] }}</h3>
                     @endif
-                    <p class="text-gray-600">{{ $step['content'] ?? '' }}</p>
+                    <p style="color: #4b5563;">{{ $step['content'] ?? '' }}</p>
                 </div>
 
-                <div class="flex items-center justify-between px-4 py-3 bg-gray-50 rounded-b-xl border-t">
-                    <div class="flex items-center gap-2">
-                        @if($showProgress)
-                            <span class="text-sm text-gray-500">{{ $currentStep + 1 }} of {{ count($steps) }}</span>
+                <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: #f9fafb; border-radius: 0 0 12px 12px; border-top: 1px solid #e5e7eb;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        @if($this->showProgress)
+                            <span style="font-size: 14px; color: #6b7280;">{{ $this->currentStep + 1 }} of {{ count($this->steps) }}</span>
                         @endif
-                        @if($allowSkip)
-                            <button wire:click="skip" class="text-sm text-gray-400 hover:text-gray-600">Skip tour</button>
+                        @if($this->allowSkip)
+                            <button wire:click="skip" style="font-size: 14px; color: #9ca3af; background: none; border: none; cursor: pointer;">Skip tour</button>
                         @endif
                     </div>
-                    <div class="flex items-center gap-2">
-                        @if($currentStep > 0)
-                            <button wire:click="previous" class="px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-200 rounded-lg">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        @if($this->currentStep > 0)
+                            <button wire:click="previous" style="padding: 6px 12px; font-size: 14px; color: #4b5563; background: transparent; border: none; border-radius: 8px; cursor: pointer;">
                                 Previous
                             </button>
                         @endif
-                        <button wire:click="next" class="px-4 py-1.5 text-sm bg-blue-500 text-white rounded-lg hover:bg-blue-600">
-                            {{ $currentStep === count($steps) - 1 ? 'Finish' : 'Next' }}
+                        <button wire:click="next" style="padding: 6px 16px; font-size: 14px; background: #3b82f6; color: white; border: none; border-radius: 8px; cursor: pointer;">
+                            {{ $this->currentStep === count($this->steps) - 1 ? 'Finish' : 'Next' }}
                         </button>
                     </div>
                 </div>
